@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 
 namespace InnoHelp.Server
 {
@@ -16,11 +17,15 @@ namespace InnoHelp.Server
 			CreateHostBuilder(args).Build().Run();
 		}
 
-		public static IHostBuilder CreateHostBuilder(string[] args) =>
-			Host.CreateDefaultBuilder(args)
-				.ConfigureWebHostDefaults(webBuilder =>
-				{
-					webBuilder.UseStartup<Startup>();
-				});
+		public static IWebHostBuilder CreateHostBuilder(string[] args)
+		{
+			var port = Environment.GetEnvironmentVariable("PORT");
+
+			return WebHost.CreateDefaultBuilder(args)
+				.UseStartup<Startup>()
+				.UseUrls("http://*:" + port);
+			//Host.CreateDefaultBuilder(args)
+			//	.ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+		}
 	}
 }

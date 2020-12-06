@@ -62,6 +62,8 @@ namespace InnoHelp.Server.Context
 			var order = await FindOrderByIdAsync(orderId);
 			if (order == null) return;
 
+			item.Id = ObjectId.GenerateNewId().ToString();
+
 			var orderUpdater = Builders<Order>.Update.AddToSet(nameof(Order.Items), item);
 			var searchFilter = Builders<Order>.Filter.Eq("_id", new BsonObjectId(new ObjectId(orderId)));
 

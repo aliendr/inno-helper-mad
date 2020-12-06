@@ -21,7 +21,7 @@ namespace InnoHelp.Server.Controllers
 		public async Task<IActionResult> Create([FromBody] Care care)
 		{
 			await _context.CreateNewCareAsync(care);
-			return Ok();
+			return Ok(care.Id);
 		}
 
 		public async Task<IActionResult> Get(string careId)

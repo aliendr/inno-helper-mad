@@ -22,7 +22,7 @@ namespace InnoHelp.Server.Controllers
 		{
 			delivery.Items = new List<string>();
 			await _context.CreateNewDeliveryAsync(delivery);
-			return Ok();
+			return Ok(delivery.Id);
 		}
 
 		public async Task<IActionResult> Get(string deliveryId)

@@ -11,6 +11,11 @@ namespace InnoHelp.Server.Data
 		[BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
 
+
+		[BsonRepresentation(BsonType.ObjectId)]
+
+		public string Creator { get; set; }
+
 		public DateTime OpenTime { get; set; }
 
 		public string Title { get; set; }

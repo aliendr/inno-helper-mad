@@ -23,7 +23,7 @@ namespace InnoHelp.Server.Controllers
 			order.Items = new List<OrderItem>();
 			order.Participants = new List<string>();
 			await _context.CreateNewOrderAsync(order);
-			return Ok();
+			return Ok(order.Id);
 		}
 
 		public async Task<IActionResult> Get(string orderId)
@@ -48,7 +48,7 @@ namespace InnoHelp.Server.Controllers
 		public async Task<IActionResult> AddItemToOrder(string orderId, [FromBody] OrderItem item)
 		{
 			await _context.AddItemToOrderAsync(orderId, item);
-			return Ok();
+			return Ok(item.Id);
 		}
 
 		public async Task<IActionResult> RemoveItemFromOrder(string orderId, string itemId)
